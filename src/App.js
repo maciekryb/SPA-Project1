@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+
+const Home = () => {
+  //console.log('render');
+  return <h1> Stron startowa</h1>;
+};
+const News = () => <h1> Aktualności</h1>;
+const Contact = () => <h1> Kontakt do nas</h1>;
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <div>
           <header>
             <nav>
@@ -20,7 +27,7 @@ class App extends Component {
                   <a href='/contact'>Kontakt</a>
                 </li> */}
                 <li>
-                  <Link to='/'>Satrt</Link>
+                  <Link to='/'>Start</Link>
                 </li>
                 <li>
                   <Link to='/news'>Aktualnosci</Link>
@@ -31,9 +38,13 @@ class App extends Component {
               </ul>
             </nav>
           </header>
-          <section>Strona-witaj</section>
+          <section>
+            <Route path='/' exact component={Home} />
+            <Route path='/news' component={News} />
+            <Route path='/contact' component={Contact} />
+          </section>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
